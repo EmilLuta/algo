@@ -5,6 +5,6 @@ def go():
     if not 0 in a:
         return -1
     else:
-        return int('5' * (a.count(5) // 9 * 9) + '0' * c.count(0))
+        return int('5' * (a.count(5) // 9 * 9) + '0' * a.count(0))
 
 print(go())
