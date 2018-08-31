@@ -30,4 +30,14 @@ class Solution:
         for i in range(slow, n):
             nums[i] = 0
         return nums
+
+    def moveZeroes(self, nums):
+        n = len(nums)
+        slow = 0
+        for i in range(n):
+            if nums[i] != 0:
+                nums[slow] = nums[i]
+                slow += 1
+        for i in range(slow, n):
+            nums[i] = 0
 print(Solution().moveZeroes([0,1,0,3,12]))
