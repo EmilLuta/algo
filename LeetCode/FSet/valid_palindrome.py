@@ -23,6 +23,16 @@ class Solution:
             j -= 1
         return True
 
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        translator = str.maketrans('', '', string.punctuation + ' ')
+        s = s.translate(translator)
+        s = s.lower()
+        return s == s[::-1]
+
 print(Solution().isPalindrome('A man, a plan, a canal: Panama'))
 print(Solution().isPalindrome('race a car'))
 print(Solution().isPalindrome('0P'))
