@@ -19,7 +19,7 @@ def go():
                 total += a
         else:
             return -1
-    if n % 2 == 1 and x[n // 2 + 1] == 2:
+    if n % 2 == 1 and x[n // 2] == 2:
         total += min(a, b)
     return total
 
