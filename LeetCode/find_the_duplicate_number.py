@@ -4,7 +4,15 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        nums.sort()
-        for i in range(len(nums) - 1):
-            if nums[i] == nums[i + 1]:
-                return nums[i]
+        slow = nums[0]
+        fast = nums[nums[0]]
+        n = 0
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        while slow != n:
+            slow = nums[slow]
+            n = nums[n]
+        return slow
+
+print(Solution().findDuplicate([1,3,4,2,2]))
