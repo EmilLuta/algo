@@ -1,0 +1,47 @@
+dp[pos][level of identation] = how many ways are possible
+
+dp[0..i-1][0.MAXJ] --> dp[i][j]
+
+if inp[i - 1] == 'f'
+    current indentation has to be one more than the previous indentation
+    dp[i][j] = dp[i - 1][j - 1]
+else
+    current statement indent is less than the previous statement indent
+    sum(dp[i-1][j..MAXJ])
+
+RUNTIME = states * transition
+runtime = (N * N) * N
+^ TLE
+
+RAN OOM
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int N, MOD = 1000000007, dp[5000][5000], sum[5000][5000];
+char inp[5000];
+
+int main() {
+    cin >> N;
+    for (int i = 0; i < N; i++) {
+        cin >> inp[i];
+    }
+    dp[0][0] = 1;
+    for (int i = 1; i < N; i++) {
+        suf[i - 1][N - 1] = dp[i - 1][N - 1];
+
+        for (int j = N - 1; j >= 0; j--) {
+            suf[i - 1][j] = suf[i - 1][j + 1] + dp[i - 1][j];
+        }
+        for (int j = 0; j < N; j++) {
+
+        }
+
+        if (inp[i-1] == 'f') {
+            dp[i][j] = dp[i-1][j-1];
+        } else {
+            dp[i][j] = suf[i - 1][j];
+        }
+    }
+}

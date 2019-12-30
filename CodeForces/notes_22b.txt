@@ -1,0 +1,67 @@
+## First approach
+
+Brute force
+    try all possible rectangles
+
+N * M starting points
+N * M ending points
+N * M to check a possible rectangle
+runtime = O((N * M)^3)
+
+dp[r1][c1][r2][c2] = whether it's a possible rectangle
+
+## Second approach
+
+2D prefix sum approach -- formula for checking if it's a possible rectangle
+dp[r1][c1][r2][c2] = dp[r1][c1][r2 - 1][c2] &&
+                     dp[r1][c1][r2][c2 - 1] &&
+                     inp[r2][c2] == 0
+
+RUNTIME = O((N * M)^2)
+
+## Third solution
+
+Not sure how it fully works - see PIC Maybe
+
+
+Code attempt
+
+#include<bits/stdc++.h>
+using namespace std;
+
+const int INF = 1000000;
+
+int N, M, grid[25][25], far[25][25];
+//make grid char
+int main() {
+    cin >> N >> M;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            cin >> grid[i][j];
+        }
+    }
+
+    for (int i = 0; i < N; i++) {
+        for (int j = M - 1; j >= 0; j--) {
+            if (grid[i][j] == '1') {
+                far[i][j] = j - 1;
+            } else if (j == M - 1) {
+                far[i][j] = j;
+            } else {
+                far[i][j] = far[i][j + 1];
+            }
+        }
+    }
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            int dist = INF;
+            for (int r2 = i; r2 < N && grid[r2][j] == '0'; r2 ++) {
+                dist = min(dist, far[r2][j]
+                out = max(out, 2 * (r2 - i + dist - j + 2));
+            }
+        }
+    }
+
+    cout << out << endl;
+}

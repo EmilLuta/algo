@@ -1,0 +1,25 @@
+DP on trees
+
+dp[node][color] = number of ways to color it = number of valid ways to paint the subtree given that the current node is has the current_color
+
+to root:
+    - root the tree at any random node, I'll root it at 1
+
+base cases:
+    - the current node is a leaf
+    - two cases:
+        - the color of the current leaf is already given to us:
+            if color == color of the current leaf:dp[node][color] = 1
+            else dp[node][color] = 0
+        - the color of the current node is not givendp[node][color] = 1
+
+to solve:
+    - recursively solve: solve all the children before solving the current node
+    - note that all the leaf nodes cannot have the same color as the current node
+    - two cases:
+        - the color of the current node is already given to us and is not color:
+            dp[node][color] = 0
+        - the color of the current node is given to us and it is the same as the current color, or the color of the current node is not given to us (this is a valid option):
+            multiply the options from all the children and sum them  1 * 2 * 2 = 4 for 1, same for 2 and 0 for 3; 4 + 4 + 0 = 8;;; dp[node][color] = product(dp[childe node][other color] + dp[child node][other other color] for all child nodes)
+
+

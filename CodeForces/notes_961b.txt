@@ -1,0 +1,16 @@
+n, k = [int(i) for i in input().split(' ')]
+a = [int(i) for i in input().split(' ')]
+t = [int(i) for i in input().split(' ')]
+pre = [0] * n
+
+for i in range(n):
+    if t[i] == 1:
+        pre[i] = pre[i - 1] + a[i]
+
+m = 0
+index = 0
+for i in range(k, n):
+    m = max(m, pre[i] - pre[i - k])
+    index = i
+
+print(index)

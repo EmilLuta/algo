@@ -1,0 +1,29 @@
+n, d = [int(i) for i in input().split(' ')]
+s = input()
+
+if s[i] == 0 => dp[i] = INF
+if s[i] == 1 =>
+    dp[i] = INF
+    range(i - D, i)
+        dp[i] = min(dp[i], dp[j] + 1
+
+
+
+RUNTIME = no of states * transition per state *
+Current = n * d
+
+INP = 1   0    0   1   0   1   0   1
+DP  = 0, INF, INF, 1, INF, 2, INF, 2
+
+
+
+ANOTHER WAY - keep indexes of 1s in a queue
+
+DP[i] = INF
+queue = [0, 3, 5, 7]
+for dp[i]:
+    while queue.front() < i - D:
+        queue.pop()
+    dp[i] = dp[queue.front()] + 1
+
+RUNTIME = O(n)

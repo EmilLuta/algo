@@ -1,0 +1,13 @@
+n = int(input())
+a = [int(i) for i in input().split(' ')]
+s, f = [int(i) for i in input().split(' ')]
+
+n *= 2
+
+###
+s = 1, f = 3
+range = f - s = 3 - 1 = 2
+
+i     0 1 2 0 1 2
+inp = 1 2 3 1 2 3
+tz  = 1 2 3

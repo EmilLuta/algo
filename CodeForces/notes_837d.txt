@@ -1,0 +1,24 @@
+# of zeros at the end of the number is the number of 10s in the product = min(the numbers of 5s in the product, # of 2s in the product)
+
+dp[index][how many numbers we took][number of 2s][numbers of 5s] = boolean
+     N                k                  N*60          N*26
+                      N           log(2, n_max)  log(5, n_max)
+
+change this to save space to =>
+
+dp[index]how many numbers we took][# of 5s] = max(# of 2s)
+
+inp  = 5, 4, 20
+two  = 0, 2, 2
+five = 1, 0, 1
+
+dp[i][j][k] =
+    - we take i
+        - do[i - 1][j - 1][k - five[i] = max(do[i - 1][j - 1][k - five[i] + two[i], dp[i][j][k])
+    - we don't take i
+        - dp[i - 1][j][k]
+
+
+SLIDING WINDOW?
+
+Just the same, but to figure out dp[i] you only need dp[i - 1], so you keep only that.
