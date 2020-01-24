@@ -3,5 +3,9 @@
 using namespace std;
 
 int main() {
-    printf("-1 mod 5 == %d\n", -1 % 5);
+    if ('0' > '9') {
+        printf("muit\n");
+    } else {
+        printf("merge\n");
+    }
 }

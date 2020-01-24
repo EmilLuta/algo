@@ -22,6 +22,9 @@ int main() {
     }
     bool ok = true;
     for (int i = 0; i < n; i++) {
+        if (b[i] > s[i]) {
+            break;
+        }
         if (s[i] > b[i]) {
             ok = false;
             break;
