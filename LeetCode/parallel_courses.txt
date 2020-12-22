@@ -1,0 +1,34 @@
+from collections import defaultdict
+from typing import List
+
+
+class Solution:
+    def minimumSemesters(self, N: int, relations: List[List[int]]) -> int:
+        if N == 0:
+            return 0
+        graph = defaultdict(list)
+        visited = set()
+        indegrees = [0] * N
+        for x, y in relations:
+            x -= 1
+            y -= 1
+            graph[x].append(y)
+            indegrees[y] += 1
+        queue = []
+        for node in range(N):
+            if indegrees[node] == 0:
+                queue.append((node, 1))
+        i = 0
+        max_semester = 1
+        while i < len(queue):
+            node, sem = queue[i]
+            visited.add(node)
+            i += 1
+            max_semester = max(max_semester, sem)
+            for out in graph[node]:
+                indegrees[out] -= 1
+                if indegrees[out] == 0:
+                    queue.append((out, sem + 1))
+        if len(visited) != N:
+            return -1
+        return max_semester

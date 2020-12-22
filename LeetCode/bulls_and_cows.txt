@@ -1,0 +1,18 @@
+from collections import Counter
+
+class Solution:
+    def getHint(self, secret: str, guess: str) -> str:
+        hitA = 0
+        hitB = 0
+        counter_secret = Counter(secret)
+        counter_guess = Counter(guess)
+        n = len(secret)
+        for i in range(n):
+            if guess[i] == secret[i]:
+                hitA += 1
+                counter_guess[guess[i]] -= 1
+                counter_secret[secret[i]] -= 1
+        for key in counter_secret:
+            if key in counter_guess:
+                hitB += min(counter_secret[key], counter_guess[key])
+        return f'{hitA}A{hitB}B'

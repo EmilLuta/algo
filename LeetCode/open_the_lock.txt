@@ -1,0 +1,39 @@
+class Solution:
+    def _next_char_fw(self, char: str) -> str:
+        if char == '9':
+            return '0'
+        return chr(ord(char) + 1)
+
+    def _next_char_bw(self, char: str) -> str:
+        if char == '0':
+            return '9'
+        return chr(ord(char) - 1)
+
+    def openLock(self, deadends: List[str], target: str) -> int:
+        parents = {}
+        for deadend in deadends:
+            parents[deadend] = -1
+        if target in parents or '0000' in parents:
+            return parents[deadend]
+        parents['0000'] = 0
+        queue = ['0000']
+        i = 0
+        while i < len(queue):
+            item = queue[i]
+            if item == target:
+                return parents[item]
+            i += 1
+            for pos in range(len(item)):
+                new_item_fw = [c for c in item]
+                new_item_fw[pos] = self._next_char_fw(item[pos])
+                new_item_fw = ''.join(x for x in new_item_fw)
+                if new_item_fw not in parents:
+                    parents[new_item_fw] = parents[item] + 1
+                    queue.append(new_item_fw)
+                new_item_bw = [c for c in item]
+                new_item_bw[pos] = self._next_char_bw(item[pos])
+                new_item_bw = ''.join(x for x in new_item_bw)
+                if new_item_bw not in parents:
+                    parents[new_item_bw] = parents[item] + 1
+                    queue.append(new_item_bw)
+        return -1

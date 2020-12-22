@@ -1,0 +1,16 @@
+10
+John 1
+Doe 1
+John 5
+Avram 100
+Luta 101
+Emil 5
+Virgil 8
+Avram 100
+Virgil 1000
+Kamil 10
+Iulia 999
+Iulia 9
+Kamil 100
+Kamil 10
+Kamil 10

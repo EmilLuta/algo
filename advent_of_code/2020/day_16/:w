@@ -1,0 +1,129 @@
+use std::collections::HashMap;
+use std::{env, fs};
+
+struct Category {
+    name: String,
+    a_start: i32,
+    a_end: i32,
+    b_start: i32,
+    b_end: i32,
+    taken: bool,
+}
+
+impl Category {
+    fn new(line: String) -> Category {
+        let category_split: Vec<String> = category.split(": ").map(|x| x.to_string()).collect();
+        let name: String = category_split[0].clone();
+        let data: Vec<String> = category_split[1]
+            .clone()
+            .split(" or ")
+            .map(|x| x.to_string())
+            .collect();
+        let a: Vec<i32> = data[0]
+            .clone()
+            .split("-")
+            .map(|x| x.to_string().parse::<i32>().unwrap())
+            .collect();
+        let b: Vec<i32> = data[1]
+            .clone()
+            .split("-")
+            .map(|x| x.to_string().parse::<i32>().unwrap())
+            .collect();
+        Category {
+            name,
+            a_first: a[0],
+            a_second: a[1],
+            b_first: b[0],
+            b_second: b[1],
+            taken: false,
+        }
+    }
+}
+
+struct Ticket {
+    vals: Vec<i32>,
+}
+
+impl Ticket {
+    fn new(line: String) -> Ticket {
+        Ticket {
+            vals: ticket
+        .clone()
+        .split(",")
+        .map(|x| x.to_string().parse::<i32>().unwrap())
+        .collect()
+        }
+    }
+}
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    let lines: Vec<String> = fs::read_to_string(&args[1])
+        .unwrap()
+        .lines()
+        .map(|line| line.to_string())
+        .collect();
+    let n: usize = lines.len();
+    let mut parsing_mode = "categories".to_string();
+    let mut i: usize = 0;
+    let mut category: Vec<Category> = vec![];
+    let mut my_ticket: Ticket = vec![];
+    let mut tickets: Vec<Ticket> = vec![];
+    while i < n {
+        if lines[i].len() == 0 {
+            parsing_mode = match &parsing_mode[..] {
+                "categories" => {
+                    i += 2;
+                    "your_ticket".to_string()
+                }
+                "your_ticket" => {
+                    i += 2;
+                    "tickets".to_string()
+                }
+                _ => {
+                    assert!(false);
+                    "invalid".to_string()
+                }
+            };
+            continue;
+        };
+        match &parsing_mode[..] {
+            "categories" => {
+                categories.push(Category::new(lines[i].clone());
+            }
+            "your_ticket" => {
+                my_ticket = Ticket::new(lines[i].clone());
+            }
+            "tickets" => {
+                all_tickets.push(Ticket::new(lines[i].clone()));
+            }
+            _ => {
+                assert!(false);
+            }
+        }
+        i += 1;
+    }
+    // println!("category_mapping {:#?}", category_mapping);
+    println!("my ticket {:#?}", my_ticket);
+    // let mut answer: i32 = 0;
+    // let mut good_tickets: Vec<Vec<i32>> = vec![];
+    // for ticket in tickets {
+    //     for ticket_val in &ticket {
+    //         let mut ok: bool = false;
+    //         for ok_range in category_mapping.values() {
+    //             if (ok_range.0 .0 <= *ticket_val && *ticket_val <= ok_range.0 .1)
+    //                 || (ok_range.1 .0 <= *ticket_val && *ticket_val <= ok_range.1 .1)
+    //             {
+    //                 ok = true;
+    //             }
+    //         }
+    //         if !ok {
+    //             answer += ticket_val;
+    //         } else {
+    //             good_tickets.push(ticket.clone());
+    //         }
+    //     }
+    // }
+    println!("answer = {}", answer);
+    println!("good_tickets = {:#?}", good_tickets);
+}

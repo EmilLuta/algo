@@ -1,0 +1,17 @@
+from typing import List
+
+
+class Solution:
+    def longestStrChain(self, words: List[str]) -> int:
+        words.sort(key=lambda w: len(w))
+        words_set = set(words)
+        parents = {}
+        for word in words:
+            parents[word] = 1
+            for i in range(len(word)):
+                parent = word[:i] + word[i + 1:]
+                if parent in words_set:
+                    parents[word] = max(parents[word], parents[parent] + 1)
+        return max(parents.values())
+
+print(Solution().longestStrChain(["d", "bc", "dc", "dbc"]))

@@ -1,0 +1,23 @@
+class Solution:
+    def _decode(self, string, index):
+        answer = ''
+        n = len(string)
+        while index < n and string[index] != ']':
+            if string[index].isnumeric():
+                str_number = string[index]
+                index += 1
+                while string[index].isnumeric():
+                    str_number += string[index]
+                    index += 1
+                decoded_string, index = self._decode(string, index + 1)
+                answer += decoded_string * int(str_number)
+            else:
+                answer += string[index]
+            index += 1
+        return answer, index
+
+    def decodeString(self, s: str) -> str:
+        return self._decode(s, 0)[0]
+
+
+10[a]

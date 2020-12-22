@@ -106,3 +106,8 @@ bool comp(string a, string b) {
 }
 // Now a vector of strings can be sorted as follows:
 sort(v.begin(), v.end(), comp);
+
+// debug a vector:
+# define deb_v(x) cerr << $x << " = [("; \
+    for (auto item: x) cerr << a[i] << " "; \
+    cerr << ")\n";

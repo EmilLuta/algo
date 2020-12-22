@@ -1,0 +1,15 @@
+import heapq
+
+class Solution:
+    def _dist_to_origin(self, p):
+        X = 0
+        Y = 1
+        return (-(p[X] ** 2 + p[Y] ** 2), p[X], p[Y])
+
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+        max_heap = []
+        for point in points:
+            heapq.heappush(max_heap, self._dist_to_origin(point))
+            if len(max_heap) > K:
+                heapq.heappop(max_heap)
+        return [[p[1], p[2]] for p in max_heap]

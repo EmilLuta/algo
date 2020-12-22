@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    ifstream input("input.txt");
+    map<int, int> m;
+    vector<int> a;
+    if (input.is_open()) {
+        string line;
+        while (getline(input, line)) {
+            string buffer = "";
+            for (int i = 0; i < (int)line.length(); i++) {
+                if (line[i] == '\n') {
+                    break;
+                }
+                if (line[i] == ',') {
+                    a.push_back(stoi(buffer));
+                    buffer = "";
+                } else {
+                    buffer += line[i];
+                }
+            }
+        }
+    }
+    for (int i = 0; i < (int)a.size(); i++) {
+        m[a[i]] = i;
+    }
+    int i = a.size();
+    int p = 0;
+    while (i < 30000000 - 1) {
+        int c = p;
+        p = m[p];
+        m[c] = i;
+        i++;
+    }
+    printf("%d\n", p);
+}

@@ -1,0 +1,31 @@
+class Solution:
+    def minAvailableDuration(self, slots1: List[List[int]], slots2: List[List[int]], duration: int) -> List[int]:
+        slots = []
+        START1 = 1
+        END1 = 2
+        START2 = 3
+        END2 = 4
+        for i in range(len(slots1)):
+            slots.append((slots1[i][0], START1))
+            slots.append((slots1[i][1], END1))
+        for i in range(len(slots2)):
+            slots.append((slots2[i][0], START2))
+            slots.append((slots2[i][1], END2))
+        slots.sort()
+        free1 = False
+        free2 = False
+        last = -1
+        for i in range(len(slots)):
+            if free1 and free2 and slots[i][0] - last >= duration:
+                return [last, last + duration]
+            if slots[i][1] == START1:
+                free1 = True
+                last = slots[i][0]
+            elif slots[i][1] == END1:
+                free1 = False
+            elif slots[i][1] == START2:
+                free2 = True
+                last = slots[i][0]
+            elif slots[i][1] == END2:
+                free2 = False
+        return []
