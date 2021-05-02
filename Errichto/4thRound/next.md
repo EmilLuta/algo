@@ -16,7 +16,7 @@ Answer: DP
 
 4. https://leetcode.com/contest/biweekly-contest-40/problems/minimum-number-of-removals-to-make-mountain-array/
     - Kinda stuck in here
-    DP - coordinate compression TODO; 
+    DP - coordinate compression TODO;
     
 # Easier to approach
 
@@ -70,6 +70,58 @@ Answer: DP
 17. https://codeforces.com/contest/1459
     - C'mon
 
+18. https://codeforces.com/contest/1466/problem/E
+    - I just need to look more into it. Barely made progress due to work. :/
+
+19. https://codeforces.com/contest/1472/problem/E
+    - We got the brute force, gotta optimise it now.
+
+20. https://codeforces.com/contest/1467
+    - Missed round. :o
+
+21. https://codeforces.com/contest/1471/problem/F
+    - Try out!
+
+22. https://codeforces.com/contests/1473
+    - Missed round
+
+23. https://codeforces.com/contest/1474
+    - Missed round. Again.
+
+24. https://codeforces.com/contest/1475
+    - Missed round. Someone'll have to do some catching up.
+
+25. https://codeforces.com/contest/1478
+    - Missed round
+
+26. https://codeforces.com/contest/1476
+    - Missed round
+
+27. https://codeforces.com/contest/1480
+    - Missed round
+
+28. https://codeforces.com/contest/1486
+    - Missed round
+
+29. https://codeforces.com/contest/1490
+    - Missed round
+
+30. https://codeforces.com/contest/1492
+    - Check out D
+
+31. https://codeforces.com/contest/1491
+    - Missed round
+
+32. https://codeforces.com/contest/1494
+    - Missed round
+
+33. https://codeforces.com/contest/1496
+    - Missed
+    - Round
+
+34. https://codeforces.com/contest/1501
+    - Missed round
+
 # Problems to approach
 
 1. https://codeforces.com/contest/1457/problem/D
@@ -86,3 +138,12 @@ Answer: DP
 
 # Problems to review
 
+
+# Discuss
+1. https://codeforces.com/contest/1485/problem/F
+    - Still gotta work it out - Weekend
+
+2. https://codeforces.com/contest/1487/problem/E
+
+3. https://codeforces.com/contest/1491/problem/D
+    - Gotta try it over weekend again
