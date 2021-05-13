@@ -8,7 +8,7 @@ LANG: C++
 
 using namespace std;
 
-void read_matrix(vector<vector<int>>& matrix, int n, ofstream& f) {
+void read_matrix(vector<vector<int>>& matrix, int n, ifstream& f) {
     for (int r = 0; r < n; r++) {
         string s;
         f >> s;
@@ -22,7 +22,7 @@ void read_matrix(vector<vector<int>>& matrix, int n, ofstream& f) {
     }
 }
 
-void equal(vector<vector<int>>& a, vector<vector<int>>& b, int n) {
+bool equal(vector<vector<int>>& a, vector<vector<int>>& b, int n) {
     for (int r = 0; r < n; r++) {
         for (int c = 0; c < n; c++) {
             if (a[r][c] != b[r][c]) {
@@ -35,17 +35,14 @@ void equal(vector<vector<int>>& a, vector<vector<int>>& b, int n) {
 
 void rotate(vector<vector<int>>& m, int n) {
     for (int s = 0; s < n / 2; s++) {
-        
+        for (int i = s; i < n - s - 1; i++) {
+            int x = m[s][i];
+            m[s][i] = m[n - i - 1][s];
+            m[n - i - 1][s] = m[n - s - 1][n - i - 1];
+            m[n - s - 1][n - i - 1] = m[i][n - s - 1];
+            m[i][n - s - 1] = x;
+        }
     }
-     1  2  3  4
-     5  6  7  8
-     9 10 11 12
-    13 14 15 16
-
-    13  9  5  1
-    14 10  6  2
-    15 11  7  3
-    16 12  8  4
 }
 
 void reflect(vector<vector<int>>& m, int n) {
@@ -54,6 +51,16 @@ void reflect(vector<vector<int>>& m, int n) {
             swap(m[r][c], m[r][n - c - 1]);
         }
     }
+}
+
+void print_matrix(vector<vector<int>>& m, int n) {
+    for (int r = 0; r < n; r++) {
+        for (int c = 0; c < n; c++) {
+            printf("%d ", m[r][c]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }
 
 int main() {
@@ -65,28 +72,30 @@ int main() {
     vector<vector<int>> trans(n, vector<int>(n));
     read_matrix(original, n, fin);
     read_matrix(trans, n, fin);
-    if (equal(original, trans)) {
-        fout << 6 << endl;
-        return 0;
-    }
     for (int i = 1; i <= 3; i++) {
-        rotate(original);
-        if (equal(original, trans)) {
+        rotate(original, n);
+        if (equal(original, trans, n)) {
             fout << i << endl;
             return 0;
         }
     }
-    rotate(original);
-    reflect(original);
-    if (equal(original, trans)) {
+    rotate(original, n);
+    reflect(original, n);
+    if (equal(original, trans, n)) {
         fout << 4 << endl;
-        return 9;
+        return 0;
     }
     for (int i = 0; i < 3; i++) {
-        if (equal(original, trans)) {
+        rotate(original, n);
+        if (equal(original, trans, n)) {
             fout << 5 << endl;
             return 0;
         }
+    }
+    reflect(original, n);
+    if (equal(original, trans, n)) {
+        fout << 6 << endl;
+        return 0;
     }
     fout << 7 << endl;
 }
