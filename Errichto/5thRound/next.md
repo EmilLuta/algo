@@ -1,27 +1,27 @@
-# To implement - Those which I already know the solution
-1. https://codeforces.com/contest/1513/problem/C
-    - Implement the fast version, discussed with Errichto
+# Problems
 
-# Attempted - Those which I tried and failed
-1. https://atcoder.jp/contests/abc196/tasks/abc196_d
-    - Tried, had no idea how to continue from here. :o
+## To code
 
-# To try - Upsolve?
-1. https://codingcompetitions.withgoogle.com/codejam/round/000000000043580a
-    - Look for D and E
-2. https://atcoder.jp/contests/abc197/tasks/abc197_e
-    - I can't find a way to do it properly - DP?
-3. https://codeforces.com/contest/1512/problem/E
-    - Trouble with generation
-4. https://codingcompetitions.withgoogle.com/kickstart/round/0000000000436140/000000000068c509#problem
-    - GKS
+1. https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435c44/00000000007ec1cb
+    - Discussed with Errichto - https://codebunk.com/pb/9361100280046/
+2. https://codeforces.com/contest/1527/problem/B2
+    - Discussed with Errichto, seemed tricky - https://codebunk.com/pb/9361100280046/
+
+
+## To find a solution
+
+1. https://codeforces.com/contest/1527/problem/C
+    - Looked into it, no idea
+2. https://atcoder.jp/contests/abc203/tasks/abc203_d
+    - 2 heaps? Running median?
+3. https://codeforces.com/contest/1523/problem/B
+    - No idea, really.
 
 # Contests
     - CodeForces
     - CSES
     - AtCoder - ABCs
-    - CodeChef
+    - TRAIN.USACO
 
 # Goal
     - First Educational 20 -> Upsolve up to D at least
-
