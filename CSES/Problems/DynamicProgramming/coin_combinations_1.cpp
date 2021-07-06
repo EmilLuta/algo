@@ -7,24 +7,26 @@ const int MOD = 1e9 + 7;
 int main() {
     int n, x;
     scanf("%d%d", &n, &x);
-    vector<int> c(n);
+    vector<int> coins(n);
     for (int i = 0; i < n; i++) {
-        scanf("%d", &c[i]);
+        scanf("%d", &coins[i]);
     }
     map<int, int> curr;
     map<int, int> prev;
-    for (int coin : c) {
+    for (int coin : coins) {
         prev[coin] = 1;
     }
-    while (true) {
-        for (int coin : c) {
-            for (pair<int, int> p : prev) {
-                int val = p.first;
-                int count = p.second;
-                if (val == x) {
-                    curr[val] += count;
-                    continue;
-                }
+    int answer = 0;
+    while (prev.size()) {
+        for (pair<int, int> p : prev) {
+            int val = p.first;
+            int count = p.second;
+            if (val == x) {
+                answer += count;
+                answer %= MOD;
+                continue;
+            }
+            for (int coin : coins) {
                 if (val + coin > x) {
                     continue;
                 }
@@ -37,21 +39,6 @@ int main() {
         if (prev.size() == 0) {
             break;
         }
-        if (prev.size() == 1 && prev.count(x) > 0) {
-            break;
-        }
-        for (int i = 0; i <= x; i++) {
-            if (prev.count(i)) {
-                printf("%d ", prev[i]);
-            } else {
-                printf("0 ");
-            }
-        }
-        printf("\n");
     }
-    for (int i = 0; i <= x; i++) {
-        printf("%d ", prev[x]);
-    }
-    printf("\n");
-    printf("%d\n", prev[x]);
+    printf("%d\n", answer);
 }
