@@ -1,57 +1,45 @@
 #include <bits/stdc++.h>
 
-#include <unistd.h>
-
-
 using namespace std;
 
-pair<int, int> get_pair(int a, int b) {
-    if (a > b) {
-        swap(a, b);
+void print_dp(vector<vector<int>>& dp) {
+    int a = dp.size();
+    int b = dp[0].size();
+    for (int i = 0; i < a; i++) {
+        for (int j = 0; j < b; j++) {
+            printf("%d ", dp[i][j]);
+        }
+        printf("\n");
     }
-    return {a, b};
-}
-
-int go(map<pair<int, int>, int>& cache, int a, int b, int& c) {
-    if (a > b) {
-        swap(a, b);
-    }
-    c++;
-    if (a == b) {
-        cache[{a, b}] = 0;
-        return 0;
-    }
-    if (a == 1) {
-        cache[{a, b}] = b - 1;
-        return b - 1;
-    }
-    if (cache.count({a, b}) != 0) {
-        return cache[{a, b}];
-    }
-    int answer = 1e9;
-    for (int i = 1; i < a; i++) {
-        int left = cache.count(get_pair(i, b)) == 0 ? go(cache, i, b, c) : cache[get_pair(i, b)];
-        int right = cache.count(get_pair(a - i, b)) == 0 ? go(cache, a - i, b, c) : cache[get_pair(a - i, b)];
-        answer = min(answer, left + right);
-    }
-    for (int i = 1; i < b; i++) {
-        int left = cache.count(get_pair(a, i)) == 0 ? go(cache, a, i, c) : cache[get_pair(a, i)];
-        int right = cache.count(get_pair(a, b - i)) == 0 ? go(cache, a, b - i, c) : cache[get_pair(a, b - i)];
-        answer = min(answer, left + right);
-    }
-    cache[{a, b}] = answer + 1;
-    return answer + 1;
 }
 
 int main() {
     int a, b;
     scanf("%d%d", &a, &b);
-    map<pair<int, int>, int> cache;
-    int c = 0;
-    printf("%d\n", go(cache, a, b, c));
-    /* for (auto p : cache) { */
-    /*     printf("(%d %d) => %d\n", p.first.first, p.first.second, p.second); */
-    /* } */
-    printf("cache size = %d\n", (int)cache.size());
-    printf("c = %d\n", c);
+    vector<vector<int>> dp(a + 1, vector<int>(b + 1, 1e9 + 7));
+    for (int i = 1; i <= a; i++) {
+        dp[i][1] = i - 1;
+    }
+    for (int i = 1; i <= b; i++) {
+        dp[1][i] = i - 1;
+    }
+    /* print_dp(dp); */
+    for (int r = 2; r <= a; r++) {
+        for (int c = 2; c <= b; c++) {
+            if (r == c) {
+                dp[r][c] = 0;
+                continue;
+            }
+            for (int i = 1; i < r; i++) {
+                /* printf("deciding for dp[%d][%d] as dp[%d][%d] + dp[%d][%d]\n", r, c, i, c, r - i, c); */
+                dp[r][c] = min(dp[r][c], dp[i][c] + dp[r - i][c] + 1);
+            }
+            for (int i = 1; i < c; i++) {
+                /* printf("deciding for dp[%d][%d] as dp[%d][%d] + dp[%d][%d]\n", r, c, r, i, r, c - i); */
+                dp[r][c] = min(dp[r][c], dp[r][i] + dp[r][c - i] + 1);
+            }
+        }
+    }
+    printf("%d\n", dp[a][b]);
+    /* print_dp(dp); */
 }
