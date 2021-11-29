@@ -26,8 +26,8 @@ int main() {
         for (int i = 0; i < n; i++) {
             for (int mask = 0; mask < (1 << n); mask++) {
                 dp[j + 1][mask] = dp[j][mask ^ (1 << i)];
-                if (i && !(mask & (1 << i)) && !(mask & (1 << i - 1))) {
-                    dp[j + 1][mask] += dp[j][mask ^ (1 << i - 1)];
+                if (i && !(mask & (1 << i)) && !(mask & (1 << (i - 1)))) {
+                    dp[j + 1][mask] += dp[j][mask ^ (1 << (i - 1))];
                 }
                 if (dp[j + 1][mask] >= MOD) {
                     dp[j + 1][mask] -= MOD;
