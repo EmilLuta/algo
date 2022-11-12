@@ -178,7 +178,7 @@ int main(int argc, char **argv) {
         }
     }
     /* vector<pair<int, int>> schedule(I); */
-    /* for (int i */ 
+    /* for (int i */
     /* cout << get_score(out, intersections, streets, vehicles, D) << endl; */
     write_to_file(out, streets, out_file);
 }

@@ -1,3 +1,4 @@
+use std::cmp::max;
 use std::env;
 use std::fs;
 
@@ -97,7 +98,7 @@ impl Node {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct Number {
     tree_list: Vec<Node>,
     root: usize,
@@ -280,12 +281,22 @@ fn main() {
         .lines()
         .map(|l| l.to_string())
         .collect();
-    let mut number = Number::new(&lines[0]);
-
-    for i in 1..lines.len() {
-        let mut new_number = Number::new(&lines[i]);
-        number.add(&mut new_number);
+    let mut numbers = vec![];
+    for i in 0..lines.len() {
+        numbers.push(Number::new(&lines[i]));
     }
-    number.print();
-    println!("answer = {}", number.magnitude(number.root));
+    let n = numbers.len();
+    let mut answer = 0;
+    for i in 0..n {
+        for j in 0..n {
+            if i == j {
+                continue;
+            }
+            let mut first = numbers[i].clone();
+            let mut second = numbers[j].clone();
+            first.add(&mut second);
+            answer = max(answer, first.magnitude(first.root));
+        }
+    }
+    println!("answer = {}", answer);
 }
